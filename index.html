@@ -15,7 +15,7 @@
     <script type="text/javascript" charset="utf-8" src="js/fastclick.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/zepto-1.1.6.js"></script>
 	<script type="text/javascript">
-		var URL = "http://arduino.local/arduino/digital/13/";
+		var URL = "http://192.168.1.200/arduino/digital/13/";
 	</script>
 </head>
 <body onload="onLoad()">
@@ -42,7 +42,7 @@
 	//
 	function onDeviceReady() {
 		alert("device ready.");
-		$.get("http://arduino.local/arduino/digital/13/", function(response) {
+		$.get("http://192.168.1.200/arduino/digital/13/", function(response) {
 			//console.log(response);
 			alert(response);
 		});
@@ -53,7 +53,7 @@
 	//
 	function onLoad() {
 		//alert("body loaded.");
-		//onDeviceReady();
+		onDeviceReady();
 	}
 </script>
 </html>
