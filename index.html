@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>PhoneGap Generic Test</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="buttons.css" />
+    <link rel="stylesheet" href="default.css" />
+    <style>
+    body {margin:0px;font-size:large;}
+	.hidden {visibility:collapse;display:none;}
+	.expose {visibility:visible;display:block;} /* Here for completeness only. */
+	.copyright {padding:5px;align:left;font-style:italic;font-size:small;}
+    </style>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/fastclick.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/zepto-1.1.6.js"></script>
+	<script type="text/javascript">
+		var URL = "http://arduino.local/arduino/digital/13/";
+	</script>
+</head>
+<body onload="onLoad()">
+<div class="button button-block button-large">
+	<img align=left src=favicon-48x48.png>
+	Phonegap Generic Test
+	<button onclick='navigator.app.exitApp()' class="button button-pill button-primary button-large" style="margin:0.1em;float:right;">Exit</button>
+</div>
+<center>
+	<p class=spacer />
+
+	<div id=content style="margin:1em;">LED #13 is: <span id=led13></span></div>
+
+	<button id=toggle13 class="button button-pill button-action button-large">Toggle</button>
+</center>
+<div class="copyright" style="padding:5px;align:left;font-style:italic;font-size:small;">
+    <span id=copyright>Created by Jesus Monroy, Jr. &copy; 2015</span>
+</div>
+</body>
+<script type="text/javascript">
+	//
+    // Wait for PhoneGap to load
+	document.addEventListener("deviceready", onDeviceReady, false);
+	//
+	function onDeviceReady() {
+		alert("device ready.");
+		$.get("http://arduino.local/arduino/digital/13/", function(response) {
+			//console.log(response);
+			alert(response);
+		});
+		$("#toggle13").click(function() {
+			alert("toggle LED #13");
+		});
+	}
+	//
+	function onLoad() {
+		//alert("body loaded.");
+		//onDeviceReady();
+	}
+</script>
+</html>
+
+
+
+
+
+
