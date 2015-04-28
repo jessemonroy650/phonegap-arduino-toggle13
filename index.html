@@ -14,8 +14,11 @@
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/fastclick.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/zepto-1.1.6.js"></script>
+    <!-- <script type="text/javascript" charset="utf-8" src="ajaxLite.js"></script> -->
 	<script type="text/javascript">
 		var URL = "http://192.168.1.200/arduino/digital/13/";
+		var LEDon    = "1";
+		var LEDoff   = "0";
 	</script>
 </head>
 <body onload="onLoad()">
@@ -28,8 +31,10 @@
 	<p class=spacer />
 
 	<div id=content style="margin:1em;">LED #13 is: <span id=led13></span></div>
+	<input id=targetIP type=text> <br />
 
 	<button id=toggle13 class="button button-pill button-action button-large">Toggle</button>
+
 </center>
 <div class="copyright" style="padding:5px;align:left;font-style:italic;font-size:small;">
     <span id=copyright>Created by Jesus Monroy, Jr. &copy; 2015</span>
@@ -41,13 +46,27 @@
 	document.addEventListener("deviceready", onDeviceReady, false);
 	//
 	function onDeviceReady() {
-		alert("device ready.");
-		$.get("http://192.168.1.200/arduino/digital/13/", function(response) {
-			//console.log(response);
-			alert(response);
-		});
+		var ledState = 0;
+		//alert("device ready.");
 		$("#toggle13").click(function() {
-			alert("toggle LED #13");
+			//alert("toggle LED #13");
+			//alert($("#targetIP").val());
+			var hostIP = $("#targetIP").val()
+			var targetHost = "http://" + hostIP + "/arduino/digital/13/"
+			// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI
+			if (ledState === 0) {
+				myurl = encodeURI(targetHost + LEDoff);
+				$("#led13").html("off");
+				ledState = 1;
+			} else {
+				myurl = encodeURI(targetHost + LEDon);
+				$("#led13").html("on");
+				ledState = 0;
+			}
+			$.get(myurl, function (data) {
+				//console.log(data);
+				$("#led13").html(data);
+			});
 		});
 	}
 	//
@@ -57,9 +76,3 @@
 	}
 </script>
 </html>
-
-
-
-
-
-
