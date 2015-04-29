@@ -15,18 +15,18 @@
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/fastclick.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/zepto-1.1.6.js"></script>
-    <script type="text/javascript" charset="utf-8" src="ajaxLite.0.8.js"></script>
 	<script type="text/javascript">
-		var URL = "http://192.168.1.200/arduino/digital/13/";
-		var LEDon    = "1";
-		var LEDoff   = "0";
+		var defaultHostIP = "192.168.240.1";
+		var hostIP        = "";
+		var targetURL     = "";
+		var ledState      = 0;
 	</script>
 </head>
 <body onload="onLoad()">
 <div class="button button-block button-large">
 	<img align=left src=favicon-48x48.png>
 	Phonegap Generic Test
-	<button onclick='navigator.app.exitApp()' class="button button-pill button-primary button-large" style="margin:0.1em;float:right;">Exit</button>
+	<button id=exitApp onclick='navigator.app.exitApp()' class="button button-pill button-primary button-large" style="margin:0.1em;float:right;">Exit</button>
 </div>
 <center>
 	<p class=spacer />
@@ -43,40 +43,51 @@
 </body>
 <script type="text/javascript">
 	// NOTE: The script are down here to allow the <body> to load, 
-	//	or in the parlance "allow the DOM to load"
-	//
+	//	or in the parlance "allow the DOM to load".
+	//	The reason we want this is we need to know where the "id" labels are.
 	//
     // Wait for PhoneGap to load
 	document.addEventListener("deviceready", onDeviceReady, false);
 	//
+	function onLoad() {
+		//alert("body loaded.");
+		onDeviceReady();
+	}
+	//
 	function onDeviceReady() {
-		var ledState = 0;
 		//alert("device ready.");
+		//
+		// This fires only when the button is pressed.
 		$("#toggle13").click(function() {
 			//alert("toggle LED #13");
-			//alert($("#targetIP").val());
-			var hostIP = $("#targetIP").val()
-			var targetHost = "http://" + hostIP + "/arduino/digital/13/"
-			// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI
+			// extract the IP the user gives us.
+			hostIP = $("#targetIP").val();
+			// if they did not give us one, use 'defaultHostIP'.
+			if (! hostIP) {
+				hostIP = defaultHostIP;
+				$("#targetIP").val(hostIP);
+			}
+			// create our partial URL
+			targetURL = "http://" + hostIP + "/arduino/digital/13/"
+			// toggle the state based on our last state.
 			if (ledState === 0) {
-				myurl = encodeURI(targetHost + LEDoff);
+				myurl = encodeURI(targetURL + "0");
 				$("#led13").html("off");
 				ledState = 1;
 			} else {
-				myurl = encodeURI(targetHost + LEDon);
+				myurl = encodeURI(targetURL + "1");
 				$("#led13").html("on");
 				ledState = 0;
 			}
+			// Actually make the call to the webserver.
 			$.get(myurl, function (data) {
 				//console.log(data);
 				$("#led13").html(data);
 			});
 		});
-	}
-	//
-	function onLoad() {
-		//alert("body loaded.");
-		onDeviceReady();
+		if (device.platform === "iOS") {
+			$("#exitApp").classAdd("hidden");			
+		}
 	}
 </script>
 </html>
