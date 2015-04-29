@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>PhoneGap Generic Test</title>
+    <title>PA Toggle 13</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="buttons.css" />
     <style>
     body {margin:0px;font-size:large;}
+	#header {padding:0;}
 	.hidden {visibility:collapse;display:none;}
 	.expose {visibility:visible;display:block;} /* Here for completeness only. */
 	.copyright {padding:5px;align:left;font-style:italic;font-size:small;}
@@ -23,9 +24,9 @@
 	</script>
 </head>
 <body onload="onLoad()">
-<div class="button button-block button-large">
+<div id=header class="button button-block button-large" >
 	<img align=left src=favicon-48x48.png>
-	Phonegap Generic Test
+	PA Toggle 13
 	<button id=exitApp onclick='navigator.app.exitApp()' class="button button-pill button-primary button-large" style="margin:0.1em;float:right;">Exit</button>
 </div>
 <center>
@@ -56,6 +57,11 @@
 	//
 	function onDeviceReady() {
 		//alert("device ready.");
+		// hide Exit button. They don't have one on iOS devices.
+		if (device.platform === "iOS") {
+			//alert("got iOS");
+			$("#exitApp").addClass("hidden");
+		}
 		//
 		// This fires only when the button is pressed.
 		$("#toggle13").click(function() {
@@ -85,10 +91,6 @@
 				$("#led13").html(data);
 			});
 		});
-		if (device.platform === "iOS") {
-			//alert("got iOS");
-			$("#exitApp").addClass("hidden");
-		}
 	}
 </script>
 </html>

@@ -16,5 +16,6 @@
 		<gap:platform name="ios" />
 
         <preference name="permissions" value="none"/>
+		<preference name="fullscreen" value="false" /> <!-- all: hides the status bar at the top of the screen -->
         <gap:plugin name="org.apache.cordova.device" />
     </widget>
