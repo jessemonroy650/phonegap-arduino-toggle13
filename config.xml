@@ -16,4 +16,5 @@
 		<gap:platform name="ios" />
 
         <preference name="permissions" value="none"/>
+        <gap:plugin name="org.apache.cordova.device" />
     </widget>
