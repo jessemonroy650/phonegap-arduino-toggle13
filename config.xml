@@ -13,9 +13,9 @@
         Jesse Monroy
         </author>
         <gap:platform name="android" />
-		<gap:platform name="ios" />
+        <gap:platform name="ios" />
 
         <preference name="permissions" value="none"/>
-		<preference name="fullscreen" value="false" /> <!-- all: hides the status bar at the top of the screen -->
+        <preference name="fullscreen" value="false" /> <!-- all: hides the status bar at the top of the screen -->
         <gap:plugin name="org.apache.cordova.device" />
     </widget>

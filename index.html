@@ -32,7 +32,7 @@
 <center>
 	<p class=spacer />
 
-	<div id=content style="margin:1em;">LED #13 is: <span id=led13></span></div>
+	<div id=content style="margin:1em;">LED #13: <span id=led13></span></div>
 	<input id=targetIP type=text> <br />
 
 	<button id=toggle13 class="button button-pill button-action button-large">Toggle</button>
@@ -78,11 +78,11 @@
 			// toggle the state based on our last state.
 			if (ledState === 0) {
 				myurl = encodeURI(targetURL + "0");
-				$("#led13").html("off");
+				$("#led13").html("given off");
 				ledState = 1;
 			} else {
 				myurl = encodeURI(targetURL + "1");
-				$("#led13").html("on");
+				$("#led13").html("given on");
 				ledState = 0;
 			}
 			// Actually make the call to the webserver.

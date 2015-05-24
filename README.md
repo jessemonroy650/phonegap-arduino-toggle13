@@ -12,12 +12,12 @@ I assume if you are seeing this, you've played with the Arduino family to a fair
 ## Getting This Working ##
 This demo requires the Arduino Yun and the sketch *Bridge*. 
 
-# Plug the Arduino Yun into your PC.
-# Start the IDE. Load the *Bridge* sketch. Upload the sketch to the Yun.
-# Test the *Bridge* sketch with your web browser.
-# Start up the PAT (Phonegap-Arduino-Toggle)
-# Enter the IP of your Yun in the Input box
-# Tap the [Toggle] button.
+1. Plug the Arduino Yun into your PC.
+2. Start the IDE. Load the *Bridge* sketch. Upload the sketch to the Yun.
+3. Test the *Bridge* sketch with your web browser.
+4. Start up the PAT (Phonegap-Arduino-Toggle)
+5. Enter the IP of your Yun in the Input box
+6. Tap the [Toggle] button.
 
 
 ## Partial Line by Line Description ##
