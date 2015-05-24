@@ -14,10 +14,13 @@ This demo requires the Arduino Yun and the sketch *Bridge*.
 
 1. Plug the Arduino Yun into your PC.
 2. Start the IDE. Load the *Bridge* sketch. Upload the sketch to the Yun.
-3. Test the *Bridge* sketch with your web browser.
-4. Start up the PAT (Phonegap-Arduino-Toggle)
-5. Enter the IP of your Yun in the Input box
-6. Tap the [Toggle] button.
+3. Make sure your webbrowser, your mobile device and the YUN are all on the same network.
+4. Test the *Bridge* sketch with your web browser.
+5. Start up the PAT (Phonegap-Arduino-Toggle)
+6. Enter the IP of your Yun in the Input box
+7. Tap the [Toggle] button.
+
+The LED should go *on*, if it was off; and *off* if it was on.
 
 
 ## Partial Line by Line Description ##
