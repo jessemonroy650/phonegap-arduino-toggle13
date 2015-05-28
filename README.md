@@ -54,13 +54,13 @@ My javascript global variables.
 *onLoad()* a function called once the <body> of the HTML is completely loaded.
 ``<body onload="onLoad()">``
 
-After the HTML, is the main program section of the App.
+**After the HTML, is the main program section of the App.**
 
-Phonegap gaurantees the (mobile) device will be ready after this event.
+Phonegap guarantees the (mobile) device will be ready after this event.
 So in practice we do NOT interact with the (mobile) device until after this event.
 ``	document.addEventListener("deviceready", onDeviceReady, false);``
 
-This function in practice for this App is to test whatever Javascript we can.
+This function in practice is for this App to test whatever it can.
 ``	function onLoad() {``
 
 This function is called when the (mobile) device is ready.
