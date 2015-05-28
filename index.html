@@ -84,7 +84,7 @@
 				// Insert the IP we will use in to the form
 				$("#targetIP").val(hostIP);
 			}
-			// create our partial URL
+			// create our partial URL with REST API
 			targetURL = "http://" + hostIP + "/arduino/digital/13/"
 			ledIntermediateState = "error"; // if we ever see this, we have problems.
 			// toggle the state based on our last state.
