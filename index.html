@@ -6,38 +6,38 @@
     <link rel="stylesheet" href="buttons.css" />
     <style>
     body {margin:0px;font-size:large;}
-	#header {padding:0;}
-	.hidden {visibility:collapse;display:none;}
-	.expose {visibility:visible;display:block;} /* Here for completeness only. */
-	.copyright {padding:5px;align:left;font-style:italic;font-size:small;}
-	.spacer {clear:both;margin:0.5em;}
-	input {font-size:1.2em;}
+    #header {padding:0;}
+    .hidden {visibility:collapse;display:none;}
+    .expose {visibility:visible;display:block;} /* Here for completeness only. */
+    .copyright {padding:5px;align:left;font-style:italic;font-size:small;}
+    .spacer {clear:both;margin:0.5em;}
+    input {font-size:1.2em;}
     </style>
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/fastclick.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/zepto-1.1.6.js"></script>
-	<script type="text/javascript">
-		// Global Variables
-		var defaultHostIP = "192.168.240.1";
-		var hostIP        = "";
-		var targetURL     = "";
-		var ledState      = 0;
-		var ledIntermediateState = "";
-	</script>
+    <script type="text/javascript">
+        // Global Variables
+        var defaultHostIP = "192.168.240.1";
+        var hostIP        = "";
+        var targetURL     = "";
+        var ledState      = 0;
+        var ledIntermediateState = "";
+    </script>
 </head>
 <body onload="onLoad()">
 <div id=header class="button button-block button-large" >
-	<img align=left src=favicon-48x48.png>
-	PA Toggle 13
-	<button id=exitApp onclick='navigator.app.exitApp()' class="button button-pill button-primary button-large" style="margin:0.1em;float:right;">Exit</button>
+    <img align=left src=favicon-48x48.png>
+    PA Toggle 13
+    <button id=exitApp onclick='navigator.app.exitApp()' class="button button-pill button-primary button-large" style="margin:0.1em;float:right;">Exit</button>
 </div>
 <center>
-	<p class=spacer />
+    <p class=spacer />
 
-	<div id=content style="margin:1em;">LED #13: <span id=led13></span></div>
-	<input id=targetIP type=text /> <br />
+    <div id=content style="margin:1em;">LED #13: <span id=led13></span></div>
+    <input id=targetIP type=text /> <br />
 
-	<button id=toggle13 class="button button-pill button-action button-large">Toggle</button>
+    <button id=toggle13 class="button button-pill button-action button-large">Toggle</button>
 
 </center>
 <div class="copyright" style="padding:5px;align:left;font-style:italic;font-size:small;">
@@ -45,65 +45,65 @@
 </div>
 </body>
 <script type="text/javascript">
-	// NOTE: The script are down here to allow the <body> to load, 
-	//	or in the parlance "allow the DOM to load".
-	//	The reason we want this is we need to know where the "id" labels are.
-	//
-	// Get rid of 300ms delay 
-	document.addEventListener('DOMContentLoaded', function() {
-			FastClick.attach(document.body);
-		}, false);
+    // NOTE: The script are down here to allow the <body> to load, 
+    //    or in the parlance "allow the DOM to load".
+    //    The reason we want this is we need to know where the "id" labels are.
+    //
+    // Get rid of 300ms delay 
+    document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
     // Wait for PhoneGap to load
-	document.addEventListener("deviceready", onDeviceReady, false);
-	//
-	function onLoad() {
-		//alert("body loaded.");
-		// update the input field with a placeholder
+    document.addEventListener("deviceready", onDeviceReady, false);
+    //
+    function onLoad() {
+        //alert("body loaded.");
+        // update the input field with a placeholder
         $("#targetIP").attr("placeholder", defaultHostIP);
-	}
-	//
-	function onDeviceReady() {
-		//alert("device ready.");
-		// hide Exit button. They don't have one on iOS devices.
-		if (device.platform === "iOS") {
-			//alert("got iOS");
-			$("#exitApp").addClass("hidden");
-			/* deals with post-iOS-7 change that covers the status bar */
-			/* http://coenraets.org/blog/2013/09/phonegap-and-cordova-with-ios-7/ */
+    }
+    //
+    function onDeviceReady() {
+        //alert("device ready.");
+        // hide Exit button. They don't have one on iOS devices.
+        if (device.platform === "iOS") {
+            //alert("got iOS");
+            $("#exitApp").addClass("hidden");
+            /* deals with post-iOS-7 change that covers the status bar */
+            /* http://coenraets.org/blog/2013/09/phonegap-and-cordova-with-ios-7/ */
             document.body.style.marginTop = "20px";
         }
         //
-		// This fires only when the button is pressed.
-		$("#toggle13").click(function() {
-			//alert("toggle LED #13");
-			// extract the IP the user gives us.
-			hostIP = $("#targetIP").val();
-			// if they did not give us one, use 'defaultHostIP'.
-			if (! hostIP) {
-				hostIP = defaultHostIP;
-				// Insert the IP we will use in to the form
-				$("#targetIP").val(hostIP);
-			}
-			// create our partial URL with REST API
-			targetURL = "http://" + hostIP + "/arduino/digital/13/"
-			ledIntermediateState = "error"; // if we ever see this, we have problems.
-			// toggle the state based on our last state.
-			if (ledState === 0) {
-				ledState = 1;
-				myurl = encodeURI(targetURL + "0");
-				ledIntermediateState = "given off";
-			} else {
-				ledState = 0;
-				myurl = encodeURI(targetURL + "1");
-				ledIntermediateState = "given on"
-			}
-			$("#led13").html(ledIntermediateState);
-			// Actually make the call to the webserver.
-			$.get(myurl, function (data) {
-				//console.log(data);
-				$("#led13").html(data);
-			});
-		});
-	}
+        // This fires only when the button is pressed.
+        $("#toggle13").click(function() {
+            //alert("toggle LED #13");
+            // extract the IP the user gives us.
+            hostIP = $("#targetIP").val();
+            // if they did not give us one, use 'defaultHostIP'.
+            if (! hostIP) {
+                hostIP = defaultHostIP;
+                // Insert the IP we will use in to the form
+                $("#targetIP").val(hostIP);
+            }
+            // create our partial URL with REST API
+            targetURL = "http://" + hostIP + "/arduino/digital/13/"
+            ledIntermediateState = "error"; // if we ever see this, we have problems.
+            // toggle the state based on our last state.
+            if (ledState === 0) {
+                ledState = 1;
+                myurl = encodeURI(targetURL + "0");
+                ledIntermediateState = "IOT set to OFF";
+            } else {
+                ledState = 0;
+                myurl = encodeURI(targetURL + "1");
+                ledIntermediateState = "IOT set to ON";
+            }
+            $("#led13").html(ledIntermediateState);
+            // Actually make the call to the webserver.
+            $.get(myurl, function (data) {
+                //console.log(data);
+                $("#led13").html(data);
+            });
+        });
+    }
 </script>
 </html>

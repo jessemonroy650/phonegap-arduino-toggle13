@@ -47,9 +47,9 @@ A Jquery alternative, much more compact and less bloated.
 ``    <script type="text/javascript" charset="utf-8" src="js/zepto-1.1.6.js"></script>``
 
 My javascript global variables.
-``	<script type="text/javascript">``
+``    <script type="text/javascript">``
 ``  ::``
-``	</script>``
+``    </script>``
 
 *onLoad()* a function called once the <body> of the HTML is completely loaded.
 ``<body onload="onLoad()">``
@@ -58,12 +58,12 @@ My javascript global variables.
 
 Phonegap guarantees the (mobile) device will be ready after this event.
 So in practice we do NOT interact with the (mobile) device until after this event.
-``	document.addEventListener("deviceready", onDeviceReady, false);``
+``    document.addEventListener("deviceready", onDeviceReady, false);``
 
 This function in practice is for this App to test whatever it can.
-``	function onLoad() {``
+``    function onLoad() {``
 
 This function is called when the (mobile) device is ready.
-``	function onDeviceReady() {``
+``    function onDeviceReady() {``
 
 The inners of this function have comments. If you need help understanding it, please ask.
