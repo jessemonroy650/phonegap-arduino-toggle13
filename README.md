@@ -27,43 +27,50 @@ The LED should go *on*, if it was off; and *off* if it was on.
 From the top of the file, we work our way down.
 
 Require for mobile devices. Essentially it tells the browser you know what your are doing.
-``    <meta name="viewport" content="width=device-width">``
+
+    <meta name="viewport" content="width=device-width">
 
 A set of predefined [CSS Buttons](http://unicorn-ui.com/buttons/builder/) from Alex Wolfe and Ron Levin
-``    <link rel="stylesheet" href="buttons.css" />``
+
+    <link rel="stylesheet" href="buttons.css" />
 
 A CSS style unique to the APP. It could be in a file, but this is more efficient.
-``    <style>``
-``    ::``
-``    </style>``
 
-Javascript required to make Phonegap work. 
-``    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>``
+    <style>
+    ::
+    </style>
 
-Javascript to remove the 300ms delay inherent to Android.
-``    <script type="text/javascript" charset="utf-8" src="js/fastclick.js"></script>``
+Javascript required to make Phonegap work.<br>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+
+Javascript to remove the 300ms delay inherent to Android.<br>
+    <script type="text/javascript" charset="utf-8" src="js/fastclick.js"></script>
 
 A Jquery alternative, much more compact and less bloated.
-``    <script type="text/javascript" charset="utf-8" src="js/zepto-1.1.6.js"></script>``
+    <script type="text/javascript" charset="utf-8" src="js/zepto-1.1.6.js"></script>
 
 My javascript global variables.
-``    <script type="text/javascript">``
-``  ::``
-``    </script>``
+    <script type="text/javascript">
+    ::
+    </script>
 
 *onLoad()* a function called once the <body> of the HTML is completely loaded.
-``<body onload="onLoad()">``
+
+    <body onload="onLoad()">
 
 **After the HTML, is the main program section of the App.**
 
 Phonegap guarantees the (mobile) device will be ready after this event.
 So in practice we do NOT interact with the (mobile) device until after this event.
-``    document.addEventListener("deviceready", onDeviceReady, false);``
+
+    document.addEventListener("deviceready", onDeviceReady, false);
 
 This function in practice is for this App to test whatever it can.
-``    function onLoad() {``
+
+    function onLoad() {
 
 This function is called when the (mobile) device is ready.
-``    function onDeviceReady() {``
+
+   function onDeviceReady() {
 
 The inners of this function have comments. If you need help understanding it, please ask.
